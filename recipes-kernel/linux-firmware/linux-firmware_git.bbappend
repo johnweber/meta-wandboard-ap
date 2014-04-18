@@ -10,6 +10,4 @@ FILES_${PN}-bcm4329-ap = " \
 "
 
 RDEPENDS_${PN}-bcm4329-ap += "${PN}-broadcom-license"
-ALTERNATIVE_linux-firmware-bcm4329-ap = "brcmfmac-sdio.bin"
-ALTERNATIVE_TARGET_linux-firmware-bcm4329-ap[brcmfmac-sdio.bin] = "/lib/firmware/brcm/fw_bcm4329_apsta.bin"
 
