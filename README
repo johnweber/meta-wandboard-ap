@@ -60,6 +60,7 @@ TODO:
 - Eliminate the need for special firmware to enable AP mode.  Ideally this
   would be part of the base linux-firmware package.
 - Performance improvements.
+- Add BCM4330 support
 
 NOTES:
 - By default, this will cause the Wandboard to NOT work in STA (client) mode
