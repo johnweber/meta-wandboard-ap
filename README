@@ -1,0 +1,73 @@
+README file for the meta-wandboard-ap layer
+
+This layer turns the Wandboard Dual or Quad into a wireless access point.
+
+Depends on:
+- poky (Daisy or higher)
+- meta-fsl-arm
+- meta-fsl-arm-extra (Daisy or higher, 3.10.17 kernel)
+
+Instructions:
+- Clone this layer into sources subdirectory
+- Add layer to BBLAYERS in build/conf/bblayers.conf:
+
+Example:
+BBLAYERS = " \
+  ${BSPDIR}/sources/poky/meta \
+  ${BSPDIR}/sources/poky/meta-yocto \
+  \
+  ${BSPDIR}/sources/meta-openembedded/meta-oe \
+  \
+  ${BSPDIR}/sources/meta-fsl-arm \
+  ${BSPDIR}/sources/meta-fsl-arm-extra \
+  ${BSPDIR}/sources/meta-fsl-demos \
+  ${BSPDIR}/sources/meta-wandboard-ap \  <---- ADD LINE HERE
+"
+
+- Add or include the following packages in build/conf/local.conf using
+CORE_IMAGE_EXTRA_INSTALL_append:
+
+  hostap-daemon
+  dhcp-server
+  dhcp-server-config
+  linux-firmware-bcm4329-ap
+
+Example:
+
+CORE_IMAGE_EXTRA_INSTALL_append = " \
+iperf \  <---- This is a useful tool for testing network throughput
+hostap-daemon \
+dhcp-server \
+dhcp-server-config \
+linux-firmware-bcm4329-ap \
+"
+
+- Build an image which includes RRECOMMENDS packages such as core-image-base.
+  (This is *not* tested with core-image-minimal) Then dd that to your microSD
+  card.
+
+- The Wandboard should be visible with an essid of "wandboard".  The default
+  passphrase is "wandboard"
+
+NOTE: if you want to change these, then grep through the recipe files and
+make modifications.
+
+Performance Tests:
+- Tested on Wandboard Dual and Quad using the iperf througput test with between
+  17 and 21 Mbps throughput depending on the test.
+
+TODO:
+- Eliminate the need for special firmware to enable AP mode.  Ideally this
+  would be part of the base linux-firmware package.
+- Performance improvements.
+
+NOTES:
+- By default, this will cause the Wandboard to NOT work in STA (client) mode
+  due to an incompatiblity between the firmware and the driver/kernel.
+
+ACKNOWLEDGEMENTS:
+
+Thanks to Scott Ellis (meta-pansenti) for the hostap-daemon-2.0 recipe.  This
+was very helpful, and to CruX for blazing the path by showing how to set up
+a working system.  And thanks to Otavio for general Yocto assistance.
+
