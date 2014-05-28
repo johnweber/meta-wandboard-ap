@@ -1,7 +1,7 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}:"
 
 SRC_URI_append = " \
-	interfaces-wlan0-ap \
+	file://interfaces-wlan0-ap \
 "
 
 # Replace previously installed interfaces file with the one that allows for an AP
