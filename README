@@ -24,27 +24,13 @@ BBLAYERS = " \
   ${BSPDIR}/sources/meta-wandboard-ap \  <---- ADD LINE HERE
 "
 
-- Add or include the following packages in build/conf/local.conf using
-CORE_IMAGE_EXTRA_INSTALL_append:
+- Build a base or test image:
 
-  hostap-daemon
-  dhcp-server
-  dhcp-server-config
-  linux-firmware-bcm4329-ap
+$ bitbake wandboard-ap-image-base
 
-Example:
+  -or-
 
-CORE_IMAGE_EXTRA_INSTALL_append = " \
-iperf \  <---- This is a useful tool for testing network throughput
-hostap-daemon \
-dhcp-server \
-dhcp-server-config \
-linux-firmware-bcm4329-ap \
-"
-
-- Build an image which includes RRECOMMENDS packages such as core-image-base.
-  (This is *not* tested with core-image-minimal) Then dd that to your microSD
-  card.
+$ bitbake wandboard-ap-image-test (adds some performance test utilities)
 
 - The Wandboard should be visible with an essid of "wandboard".  The default
   passphrase is "wandboard"
