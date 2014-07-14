@@ -1,23 +1,25 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
-FW_FILE = "fw_bcm4329_apsta.bin"
-
 SRC_URI_append = " \
-	file://${FW_FILE} \
+  file://fw_bcm4329_apsta.bin \
+  file://fw_bcm4330_apsta_bg.bin \
 "
-
-PACKAGES =+ "${PN}-bcm4329-ap"
-
-do_install_append () { 
-	install -m 644 ${WORKDIR}/${FW_FILE} ${D}/lib/firmware/brcm/${FW_FILE}
+do_install_append () {
+	install -m 644 ${WORKDIR}/fw_bcm4329_apsta.bin ${D}/lib/firmware/brcm/brcmfmac4329-ap-sdio.bin
+	install -m 644 ${WORKDIR}/fw_bcm4330_apsta_bg.bin ${D}/lib/firmware/brcm/brcmfmac4330-ap-sdio.bin
 }
 
-LICENSE_${PN}-bcm4329-ap = "Firmware-bcm4329"
-FILES_${PN}-bcm4329-ap = " \
-  /lib/firmware/brcm/${FW_FILE} \
+FILES_${PN}-bcm4329 += " \
+  /lib/firmware/brcm/brcmfmac4329-ap-sdio.bin \
 "
 
-RDEPENDS_${PN}-bcm4329-ap += "${PN}-broadcom-license"
-ALTERNATIVE_linux-firmware-bcm4329-ap = "brcmfmac-sdio.bin"
-ALTERNATIVE_TARGET_linux-firmware-bcm4329-ap[brcmfmac-sdio.bin] = "/lib/firmware/brcm/${FW_FILE}"
-ALTERNATIVE_PRIORITY_linux-firmware-bcm4329-ap[brcmfmac-sdio.bin] = "90"
+FILES_${PN}-bcm4330 += " \
+  /lib/firmware/brcm/brcmfmac4330-ap-sdio.bin \
+"
+
+ALTERNATIVE_TARGET_linux-firmware-bcm4329[brcmfmac4329-sdio.bin] = "${BRCM_FWDIR}/brcmfmac4329-ap-sdio.bin"
+ALTERNATIVE_PRIORITY_linux-firmware-bcm4329[brcmfmac4329-sdio.bin] = "90"
+
+ALTERNATIVE_TARGET_linux-firmware-bcm4330[brcmfmac4330-sdio.bin] = "${BRCM_FWDIR}/brcmfmac4330-ap-sdio.bin"
+ALTERNATIVE_PRIORITY_linux-firmware-bcm4329[brcmfmac4330-sdio.bin] = "90"
+
