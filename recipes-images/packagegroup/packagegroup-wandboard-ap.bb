@@ -20,7 +20,6 @@ RDEPENDS_${PN}-base = " \
     hostap-daemon \
     dhcp-server \
     dhcp-server-config \
-    linux-firmware-bcm4329-ap \
 "
 
 RDEPENDS_${PN}-test = " \
