@@ -17,7 +17,7 @@ PACKAGES += " \
 
 RDEPENDS_${PN}-base = " \
     wpa-supplicant \
-    hostap-daemon \
+    hostapd \
     dhcp-server \
     dhcp-server-config \
 "
