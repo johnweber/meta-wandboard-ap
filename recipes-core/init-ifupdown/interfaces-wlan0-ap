@@ -12,8 +12,6 @@ iface wlan0 inet static
         network 10.10.10.0    
         netmask 255.255.255.0
         post-up /etc/init.d/dhcp-server start
-        post-up /etc/init.d/hostapd start    
-        down /etc/init.d/hostapd stop        
         post-down /etc/init.d/dhcp-server stop
 
 #	wireless_mode managed
