@@ -9,7 +9,7 @@ Depends on:
 
 Instructions:
 - Clone this layer into sources subdirectory
-- Checkout the branch cooresponding to the Yocto version used in your
+- Checkout the branch corresponding to the Yocto version used in your
   other layers. (e.g. git checkout daisy when working with the daisy
   stable branch)
 - Add layer to BBLAYERS in build/conf/bblayers.conf:
