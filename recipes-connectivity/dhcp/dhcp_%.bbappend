@@ -5,7 +5,7 @@ SRC_URI_append_wandboard = " \
 	file://dhcp-server \
 "
 
-do_install_append () {
+do_install_append_wandboard () {
         rm -f ${D}${sysconfdir}/dhcpd.conf*
         install -m 0644 ${WORKDIR}/wandboard-dhcpd.conf ${D}${sysconfdir}/dhcp/dhcpd.conf
 	install -m 0644 ${WORKDIR}/dhcp-server ${D}${sysconfdir}/default/dhcp-server
